@@ -1,14 +1,38 @@
-# Project
+# Learning Modular Simulations for Homogenous Networks
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+First install Julia from https://julialang.org/downloads/ and ensure that it's available on your `$PATH`. Currently only tested on Ubuntu 18.04 and Julia v1.6.
 
-As the maintainer of this project, please make a few updates:
+## Usage
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+After cloning the repository, run:
+
+```bash
+julia --project=exps 'using Pkg; Pkg.instantiate()'
+```
+
+`train.jl` allows training a particular model defined in the config on a particular system dataset.
+
+For example, to train on the system `default_lorenz3` system on the L2S model:
+```bash
+julia --project=exps exps/train.jl default_lorenz3 --conf configs/gnnsc_de0_sys_32.toml --evalconf configs/evaltemplate.toml --savedir /tmp/mpdifflogs/l2strial
+```
+or on the MP-NODE model:
+```bash
+julia --project=exps exps/train.jl default_lorenz3 --conf configs/empode_sys_32_3.toml --evalconf configs/evaltemplate.toml --savedir /tmp/mpdifflogs/mpnodetrial
+```
+
+## Code overview
+
+- `src/systems`: contains the systems we evaluate the MP-NODE and other baselines on.
+- `src/datagen.jl`: contains utilities to generate data from the systems.
+- `src/empde.jl`: contains the pieces required to setup MP-NODE models.
+- `src/gnnode.jl`: contains the pieces required to setup L2S models.
+- `src/nde.jl`: contains the pieces required to setup NODE models.
+- `src/learn.jl` and `src/learn_utils.jl`: contains the model training utilities.
+- `exps/models.jl`: contains the specific models used in the paper.
+- `exps/train_pipeline.jl`: contains orchestration for full training pipeline.
+- `exps/tasks.jl`: contains the specific systems used in the paper.  
+
 
 ## Contributing
 

@@ -1,0 +1,89 @@
+seed = 42
+
+[collocate]
+nepochs = 0
+batchsize = 256
+loadbestatend = true
+
+    [collocate.opt]
+    optimizer = "ADAM"
+    lr = 0.01
+    weight_decay = 0.0
+    clipgrad = 0.0
+
+    [collocate.scheduler]
+    name = "nothing"
+
+        [collocate.scheduler.options.none]
+        opt = "nothing"
+
+[singlestep]
+nepochs = 0
+batchsize = 256
+loadbestatend = true
+
+    [singlestep.opt]
+    optimizer = "ADAM"
+    lr = 0.01
+    weight_decay = 0.0
+    clipgrad = 0.0
+
+    [singlestep.scheduler]
+    name = "nothing"
+
+        [singlestep.scheduler.options.none]
+        opt = "nothing"
+
+[shooting]
+loss = "single"
+difffn = "time_series_huber"
+horizonwindow = [50]
+depth = 1
+nepochs = 4000
+batchsize = 128
+loadbestatend = true
+
+    [shooting.opt]
+    optimizer = "ADAM"
+    lr = 0.001
+    weight_decay = 0.0
+    clipgrad = 500.0
+
+    [shooting.scheduler]
+    name = "nothing"
+
+        [shooting.scheduler.options.none]
+        opt = "nothing"
+
+[data]
+datasize = 1000
+horizon = 50
+dt = 0.05
+split = 0.7
+noisestd = 0.0001
+statesampler = "rand_constrained"
+controlsampler = "rand_sinusoid"
+normalize = "ztransform"
+
+[model]
+name = "empode"
+hiddendim = 32
+messagedim = 3
+embeddim = 0
+augdim = 0
+graph = "full"
+numfactors = 1
+zeromsg = false
+
+[integrator]
+integrator = "Tsit5"
+abstol = 0.0001
+reltol = 0.0001
+
+[save]
+dir = "/tmp/mpdiffeq"
+freq = 50
+
+[earlystop]
+patience = 500
+waited = 20000

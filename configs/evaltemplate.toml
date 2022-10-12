@@ -1,0 +1,12 @@
+[transfer]
+enabled = false
+systems = [""]
+datasize = 100
+horizon = 50
+dt = 0.05
+statesampler = "rand_constrained"
+controlsampler = "rand_sinusoid"
+
+[trajplot]
+trainidxs = [1, 2, 3, 4]
+valididxs = [1, 2, 3, 4]
