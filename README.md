@@ -1,4 +1,10 @@
-# Learning Modular Simulations for Homogenous Networks
+# MPNODE.jl 
+
+This repo contains the code associated with the paper [Learning Modular Simulations for Homogenous Networks](https://arxiv.org/abs/2210.16294). Also see the [blogpost](https://www.microsoft.com/en-us/research/group/autonomous-systems-group-robotics/articles/towards-modular-data-driven-simulations/).
+
+![image](https://user-images.githubusercontent.com/1785175/204102864-29c46654-9c51-408c-95d1-586bbd5d30f4.png)
+
+## Prerequisites
 
 First install Julia from https://julialang.org/downloads/ and ensure that it's available on your `$PATH`. Currently only tested on Ubuntu 18.04 and Julia v1.6.
 
